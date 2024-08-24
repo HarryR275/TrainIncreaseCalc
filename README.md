@@ -1,2 +1,2 @@
 # TrainIncreaseCalc
-A simple way to better visualize the fundamental/Generally Accepted practice of increasing training mileage for distance runners.
+A simple way to better visualize the fundamental/generally accepted practice of increasing training mileage for distance runners.
