@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Training Increase Calculator</title>
+    <style>
+        /* CSS styles go here */
+    </style>
+</head>
+<body>
+    <h1>Training Increase Caluculator</h1>
+    Week 1 total mileage: <input type="text" id="beginningMileage" value="10" style="width: 25px" /><br />
+    Percentage increase per week: <input type="text" id="percentageIncrease" value="10" style="width: 25px" /><br />
+    Percentage of weekly total on Long Run: <input type="text" id="percentageLongRun" value="30" style="width: 25px" /><br />
+    Rest Days per week: <input type="text" id="restDays" value="2" style="width: 25px" /><br />
+    Long Run day: <select id="longRunDay">
+        <option value="0">Sunday</option>
+        <option value="1">Monday</option>
+        <option value="2">Tuesday</option>
+        <option value="3">Wednesday</option>
+        <option value="4">Thursday</option>
+        <option value="5">Friday</option>
+        <option value="6">Saturday</option>
+    </select><br />
+    <button id="calculate">Calculate</button>
+    <div id="results"></div>
+    <!-- <script src="trainingIncrease.js"></script> -->
+    <br />
+    <hr />
+    <table>
+        <tr>
+            <th>Week</th>
+            <th>Sunday</th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+        </tr>
+        <tr id="w1">
+            <td>1</td>
+            <td id="w1d1">0</td>
+            <td id="w1d2">0</td>
+            <td id="w1d3">0</td>
+            <td id="w1d4">0</td>
+            <td id="w1d5">0</td>
+            <td id="w1d6">0</td>
+            <td id="w1d7">0</td>
+            <tr>
+                <td>2</td>
+                <td id="w2d1">0</td>
+                <td id="w2d2">0</td>
+                <td id="w2d3">0</td>
+                <td id="w2d4">0</td>
+                <td id="w2d5">0</td>
+                <td id="w2d6">0</td>
+                <td id="w2d7">0</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td id="w3d1">0</td>
+                <td id="w3d2">0</td>
+                <td id="w3d3">0</td>
+                <td id="w3d4">0</td>
+                <td id="w3d5">0</td>
+                <td id="w3d6">0</td>
+                <td id="w3d7">0</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td id="w4d1">0</td>
+                <td id="w4d2">0</td>
+                <td id="w4d3">0</td>
+                <td id="w4d4">0</td>
+                <td id="w4d5">0</td>
+                <td id="w4d6">0</td>
+                <td id="w4d7">0</td>
+                <tr>
+                    <td>5</td>
+                    <td id="w5d1">0</td>
+                    <td id="w5d2">0</td>
+                    <td id="w5d3">0</td>
+                    <td id="w5d4">0</td>
+                    <td id="w5d5">0</td>
+                    <td id="w5d6">0</td>
+                    <td id="w5d7">0</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td id="w6d1">0</td>
+                    <td id="w6d2">0</td>
+                    <td id="w6d3">0</td>
+                    <td id="w6d4">0</td>
+                    <td id="w6d5">0</td>
+                    <td id="w6d6">0</td>
+                    <td id="w6d7">0</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td id="w7d1">0</td>
+                    <td id="w7d2">0</td>
+                    <td id="w7d3">0</td>
+                    <td id="w7d4">0</td>
+                    <td id="w7d5">0</td>
+                    <td id="w7d6">0</td>
+                    <td id="w7d7">0</td>
+                    <tr>
+                        <td>8</td>
+                        <td id="w8d1">0</td>
+                        <td id="w8d2">0</td>
+                        <td id="w8d3">0</td>
+                        <td id="w8d4">0</td>
+                        <td id="w8d5">0</td>
+                        <td id="w8d6">0</td>
+                        <td id="w8d7">0</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td id="w9d1">0</td>
+                        <td id="w9d2">0</td>
+                        <td id="w9d3">0</td>
+                        <td id="w9d4">0</td>
+                        <td id="w9d5">0</td>
+                        <td id="w9d6">0</td>
+                        <td id="w9d7">0</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td id="w10d1">0</td>
+                        <td id="w10d2">0</td>
+                        <td id="w10d3">0</td>
+                        <td id="w10d4">0</td>
+                        <td id="w10d5">0</td>
+                        <td id="w10d6">0</td>
+                        <td id="w10d7">0</td>
+                        <tr>
+                            <td>11</td>
+                            <td id="w11d1">0</td>
+                            <td id="w11d2">0</td>
+                            <td id="w11d3">0</td>
+                            <td id="w11d4">0</td>
+                            <td id="w11d5">0</td>
+                            <td id="w11d6">0</td>
+                            <td id="w11d7">0</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td id="w12d1">0</td>
+                            <td id="w12d2">0</td>
+                            <td id="w12d3">0</td>
+                            <td id="w12d4">0</td>
+                            <td id="w12d5">0</td>
+                            <td id="w12d6">0</td>
+                            <td id="w12d7">0</td>
+                        </tr>
+    </table>
+</body>
+</html>
