@@ -8,23 +8,84 @@
     </style>
 </head>
 <body>
-    <h1>Training Increase Caluculator</h1>
+    <h1>Training Increase Calculator</h1>
     Week 1 total mileage: <input type="text" id="beginningMileage" value="10" style="width: 25px" /><br />
     Percentage increase per week: <input type="text" id="percentageIncrease" value="10" style="width: 25px" /><br />
     Percentage of weekly total on Long Run: <input type="text" id="percentageLongRun" value="30" style="width: 25px" /><br />
-    Rest Days per week: <input type="text" id="restDays" value="2" style="width: 25px" /><br />
+    Rest days: <br />
+    <input type="checkbox" id="restDay1" name="restDay" value="1">
+    <label for="restDay1">Sunday</label><br />
+    <input type="checkbox" id="restDay2" name="restDay" value="2">
+    <label for="restDay2">Monday</label><br />
+    <input type="checkbox" id="restDay3" name="restDay" value="3">
+    <label for="restDay3">Tuesday</label><br />
+    <input type="checkbox" id="restDay4" name="restDay" value="4">
+    <label for="restDay4">Wednesday</label><br />
+    <input type="checkbox" id="restDay5" name="restDay" value="5">
+    <label for="restDay5">Thursday</label><br />
+    <input type="checkbox" id="restDay6" name="restDay" value="6">
+    <label for="restDay6">Friday</label><br />
+    <input type="checkbox" id="restDay7" name="restDay" value="7">
+    <label for="restDay7">Saturday</label><br />
     Long Run day: <select id="longRunDay">
-        <option value="0">Sunday</option>
-        <option value="1">Monday</option>
-        <option value="2">Tuesday</option>
-        <option value="3">Wednesday</option>
-        <option value="4">Thursday</option>
-        <option value="5">Friday</option>
-        <option value="6">Saturday</option>
+        <option value="1">Sunday</option>
+        <option value="2">Monday</option>
+        <option value="3">Tuesday</option>
+        <option value="4">Wednesday</option>
+        <option value="5">Thursday</option>
+        <option value="6">Friday</option>
+        <option value="7">Saturday</option>
     </select><br />
     <button id="calculate">Calculate</button>
     <div id="results"></div>
-    <!-- <script src="trainingIncrease.js"></script> -->
+    <!--JAVASCRIPT BELOW-->
+    <script>
+    function calculate() {
+        // Get the input values
+        var beginningMileage = parseInt(document.getElementById("beginningMileage").value);
+        var percentageIncrease = parseInt(document.getElementById("percentageIncrease").value);
+        var percentageLongRun = parseInt(document.getElementById("percentageLongRun").value);
+        var restDays = Array.from(document.querySelectorAll('input[name="restDay"]:checked')).map(input => parseInt(input.value));
+        var longRunDay = parseInt(document.getElementById("longRunDay").value);
+        var currentweeklyMileage = beginningMileage;
+        var nonlongrundays = 6 - parseInt(restDays.length);
+
+        // Update the table with calculated values
+         for (var w = 1; w <= 12; w++) {
+            console.log(currentweeklyMileage);
+            var longRunMileage = currentweeklyMileage * (percentageLongRun / 100);
+            console.log(longRunMileage);
+            var nonLongRunMileage = (currentweeklyMileage - longRunMileage) / (nonlongrundays);
+            console.log(nonLongRunMileage);
+            for (var d = 1; d <= 7; d++) {
+                //console.log(d);
+                if (d == longRunDay) {
+                    document.getElementById("w" + w + "d" + d).innerHTML = longRunMileage.toFixed(2);
+                    //console.log("long run day");
+                }
+                
+                else if (restDays.includes(d)) {
+                    document.getElementById("w" + w + "d" + d).innerHTML = "";
+                    //console.log("rest day");
+                }
+                else {
+                    document.getElementById("w" + w + "d" + d).innerHTML = nonLongRunMileage.toFixed(2);
+                    //console.log("non long run day");
+                }
+                
+            }
+        
+            document.getElementById("w" + w + "total").innerHTML = currentweeklyMileage.toFixed(2);
+            currentweeklyMileage = currentweeklyMileage + (currentweeklyMileage * (percentageIncrease / 100));
+        }
+            
+        
+    }
+
+    // Attach the calculate function to the button click event
+    document.getElementById("calculate").addEventListener("click", calculate);
+    </script>
+    <!--JAVASCRIPT ABOVE-->
     <br />
     <hr />
     <table>
@@ -37,6 +98,7 @@
             <th>Thursday</th>
             <th>Friday</th>
             <th>Saturday</th>
+            <th>Total</th>
         </tr>
         <tr id="w1">
             <td>1</td>
@@ -47,6 +109,7 @@
             <td id="w1d5">0</td>
             <td id="w1d6">0</td>
             <td id="w1d7">0</td>
+            <td id="w1total">0</td>
             <tr>
                 <td>2</td>
                 <td id="w2d1">0</td>
@@ -56,6 +119,7 @@
                 <td id="w2d5">0</td>
                 <td id="w2d6">0</td>
                 <td id="w2d7">0</td>
+                <td id="w2total">0</td>
             </tr>
             <tr>
                 <td>3</td>
@@ -66,6 +130,7 @@
                 <td id="w3d5">0</td>
                 <td id="w3d6">0</td>
                 <td id="w3d7">0</td>
+                <td id="w3total">0</td>
             </tr>
             <tr>
                 <td>4</td>
@@ -76,6 +141,7 @@
                 <td id="w4d5">0</td>
                 <td id="w4d6">0</td>
                 <td id="w4d7">0</td>
+                <td id="w4total">0</td>
                 <tr>
                     <td>5</td>
                     <td id="w5d1">0</td>
@@ -85,6 +151,7 @@
                     <td id="w5d5">0</td>
                     <td id="w5d6">0</td>
                     <td id="w5d7">0</td>
+                    <td id="w5total">0</td>
                 </tr>
                 <tr>
                     <td>6</td>
@@ -95,6 +162,7 @@
                     <td id="w6d5">0</td>
                     <td id="w6d6">0</td>
                     <td id="w6d7">0</td>
+                    <td id="w6total">0</td>
                 </tr>
                 <tr>
                     <td>7</td>
@@ -105,6 +173,7 @@
                     <td id="w7d5">0</td>
                     <td id="w7d6">0</td>
                     <td id="w7d7">0</td>
+                    <td id="w7total">0</td>
                     <tr>
                         <td>8</td>
                         <td id="w8d1">0</td>
@@ -114,6 +183,7 @@
                         <td id="w8d5">0</td>
                         <td id="w8d6">0</td>
                         <td id="w8d7">0</td>
+                        <td id="w8total">0</td>
                     </tr>
                     <tr>
                         <td>9</td>
@@ -124,6 +194,7 @@
                         <td id="w9d5">0</td>
                         <td id="w9d6">0</td>
                         <td id="w9d7">0</td>
+                        <td id="w9total">0</td>
                     </tr>
                     <tr>
                         <td>10</td>
@@ -134,6 +205,7 @@
                         <td id="w10d5">0</td>
                         <td id="w10d6">0</td>
                         <td id="w10d7">0</td>
+                        <td id="w10total">0</td>
                         <tr>
                             <td>11</td>
                             <td id="w11d1">0</td>
@@ -143,6 +215,7 @@
                             <td id="w11d5">0</td>
                             <td id="w11d6">0</td>
                             <td id="w11d7">0</td>
+                            <td id="w11total">0</td>
                         </tr>
                         <tr>
                             <td>12</td>
@@ -153,6 +226,7 @@
                             <td id="w12d5">0</td>
                             <td id="w12d6">0</td>
                             <td id="w12d7">0</td>
+                            <td id="w12total">0</td>
                         </tr>
     </table>
 </body>
